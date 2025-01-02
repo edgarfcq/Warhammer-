@@ -3,7 +3,7 @@ import java.util.*;
 class Groupe {
     private String nom;
     private int points;
-    private List<Unite> unites;
+    private ArrayList<Unite> listeUnites;
 
     public Groupe(String nom, int points) {
         if (nom == null || nom.trim().isEmpty()) {
@@ -16,21 +16,21 @@ class Groupe {
 
         this.nom = nom;
         this.points = points;
-        this.unites = new ArrayList<>();
+        this.listeUnites = new ArrayList<>();
     }
 
     @Override
     public String toString(){
         String formattedString = "";
         formattedString += String.format("Groupes :\n- %s\n   ", this.nom);
-        for(int i = 0; i < 10; i++){
-            String.format("%s", unites.get(i));
+        for(Unite unitePtr : listeUnites){
+            formattedString += String.format("%s\n", unitePtr.toString());
         }
         return formattedString;
     }
 
     public void ajouterUnite(Unite unite) {
-        unites.add(unite);
+        listeUnites.add(unite);
     }
 
     public String getNom() {

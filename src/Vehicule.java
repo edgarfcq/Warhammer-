@@ -13,4 +13,17 @@ class Vehicule extends Unite {
         this.typeVehicule = typeVehicule;
         this.capaciteTransport = capaciteTransport;
     }
+
+    @Override
+    public String toString(){
+        return String.format("- %s - %s : (%d pts, capacité : %d)", this.typeVehicule, this.getNom(), this.getCoutPoints(), this.capaciteTransport);
+    }
+
+    public String getTypeVehicule() {
+        return typeVehicule;
+    }
+
+    public void setTypeVehicule(String typeVehicule) {
+        this.typeVehicule = typeVehicule;
+    }
 }

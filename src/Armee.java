@@ -9,6 +9,13 @@ public class Armee {
     private List<Groupe> groupes;
 
     // Constructeur avec les vérifications
+
+    /**
+     *
+     * @param nom
+     * @param faction
+     * @param maxPoints
+     */
     public Armee(String nom, String faction, int maxPoints) {
 
         if (nom == null || nom.trim().isEmpty()) {
@@ -30,6 +37,10 @@ public class Armee {
         this.groupes = new ArrayList<>();
     }
 
+    /**
+     *
+     * @param groupe
+     */
     public void ajouterGroupe(Groupe groupe) {
         if (groupe == null) {
             throw new IllegalArgumentException("Vous devez fournir un objet de type Groupe.");
@@ -44,6 +55,14 @@ public class Armee {
         groupes.add(groupe);
         totalPoints += groupe.getPoints(); // Mise à jour du total
     }
+
+
+
+    @Override
+    public String toString(){
+        return String.format("Nom de l'armée : %s \nNom de la faction : %s \nPoints max : %d \nPoints utilisés : %d", this.nom, this.faction, this.maxPoints, this.totalPoints);
+    }
+
 
     // Getters et Setters
     public String getNom() {

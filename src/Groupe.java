@@ -17,7 +17,7 @@ class Groupe {
     @Override
     public String toString(){
         String formattedString = "";
-        formattedString += String.format("Groupes :\n- %s\n   ", this.nom);
+        formattedString += String.format("- %s\n   ", this.nom);
         for(Unite unitePtr : listeUnites){
             formattedString += String.format("%s\n   ", unitePtr.toString());
         }

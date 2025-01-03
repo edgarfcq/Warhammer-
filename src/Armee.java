@@ -60,8 +60,10 @@ public class Armee {
 
     @Override
     public String toString(){
-        return String.format("Nom de l'armée : %s \nNom de la faction : %s \nPoints max : %d \nPoints utilisés : %d", this.nom, this.faction, this.maxPoints, this.totalPoints);
-
+        String formattedString = "";
+        formattedString += String.format("Nom de l'armée : %s \nNom de la faction : %s \nPoints max : %d \nPoints utilisés : %d", this.nom, this.faction, this.maxPoints, this.totalPoints);
+        formattedString += String.format("\nGroupes :");
+        return formattedString;
     }
 
 
@@ -79,6 +81,6 @@ public class Armee {
         return totalPoints;
     }
     public List<Groupe> getGroupes() {
-        return this.groupes; // Retourne une copie pour éviter les modifications externes
+        return this.groupes;
     }
 }

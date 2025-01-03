@@ -15,7 +15,7 @@ class Vehicule implements Unite {
         if (typeVehicule == null) {
             throw new IllegalArgumentException("Vous devez fournir un type de véhicule.");
         }
-        if (capaciteTransport <= 0) {
+        if (capaciteTransport < 0) {
             throw new IllegalArgumentException("La capacité de transport doit être strictement positifs.");
         }
         this.nom = nom;

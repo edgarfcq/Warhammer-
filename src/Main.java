@@ -15,9 +15,10 @@ public class Main {
                 switch (choix) {
                     case 1 -> initialisationArmee();
                     case 2 -> creerGroupe();
-                    case 3 -> afficherArmee();
-                    case 4 -> {
-                        System.out.println("quelle armée terrifiante !");
+                    case 3 -> modifierGroupe();
+                    case 4 -> afficherArmee();
+                    case 5 -> {
+                        System.out.println("Fin du programme...");
                         return; // Quitte le programme
                     }
                     default -> System.out.println("Choix invalide. Veuillez réessayer.");
@@ -33,27 +34,27 @@ public class Main {
 
     private static void initialisationArmee(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Ecrire le nom de l'armée: ");
+        System.out.print("Ecrire le nom de l'armée : ");
         String nomArmee = scanner.nextLine();
 
 
-        System.out.print("Ecrire le nom de la faction: ");
+        System.out.print("Ecrire le nom de la faction : ");
         String nomFaction = scanner.nextLine();
 
-        System.out.print("Ecrire la taille de l'armée ");
+        System.out.print("Ecrire la taille de l'armée :");
         int tailleArmee = 0;
         String input = scanner.nextLine();
         tailleArmee = Integer.parseInt(input);
-        Armee armee = new Armee(nomArmee,nomFaction,tailleArmee);
-        testArmees = armee;
+        testArmees = new Armee(nomArmee,nomFaction,tailleArmee);
     }
 
     private static void afficherMenuPrincipal() {
         System.out.println("\n--- Menu Principal ---");
         System.out.println("1. Créer une nouvelle armée");
         System.out.println("2. Créer un nouveau Groupe");
-        System.out.println("3. Afficher Armee");
-        System.out.println("4. Quitter");
+        System.out.println("3. Modifier Groupe");
+        System.out.println("4. Afficher Armee");
+        System.out.println("5. Quitter");
     }
 
     private static void creerGroupe() {
@@ -65,6 +66,28 @@ public class Main {
         return;
     }
 
+
+    private static void modifierGroupe() {
+        int nombreGroupe = testArmees.getGroupes().size();
+        if (nombreGroupe == 0) {
+            System.out.println("Il n'y a actuellement aucun groupe.\nRetour au menu principal...");
+            return;
+        }
+
+        int indice;
+        do {
+            System.out.printf("Il y a actuellement %d groupes.\n", nombreGroupe);
+            indice = lireEntier(String.format("Donner l'indice du groupe (0 à %d) : ",(nombreGroupe - 1)));
+            if (indice < 0 || indice >= nombreGroupe) {
+                System.out.println("Indice invalide. Veuillez entrer un indice valide.");
+            }
+        } while (indice < 0 || indice >= nombreGroupe);
+
+        gererGroupe(testArmees.getGroupes().get(indice));
+    }
+
+
+
     private static void gererGroupe(Groupe groupe) {
         while (true) {
             System.out.printf("\n--- Gestion du Groupe : %s ---\n", groupe.getNom());
@@ -75,9 +98,15 @@ public class Main {
             switch (choix) {
                 case 1 -> ajouterUnite(groupe);
                 case 2 -> {
-                    testArmees.ajouterGroupe(groupe);
+                    try {
+                        if (!testArmees.getGroupes().contains(groupe)) { // Évite les doublons
+                            testArmees.ajouterGroupe(groupe);
+                        }
+                    } catch (IllegalArgumentException e) { // dépassement des pts max
+                        System.err.println("Erreur : " + e.getMessage());
+                    }
                     System.out.println("Retour au menu principal...");
-                    return; // Sort de la gestion de cette armée
+                    return;
                 }
                 default -> System.out.println("Choix invalide. Veuillez réessayer.");
             }

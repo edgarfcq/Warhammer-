@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList  ;
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
@@ -42,7 +41,7 @@ public class Main {
         String nomFaction = scanner.nextLine();
 
         System.out.print("Ecrire la taille de l'armée :");
-        int tailleArmee = 0;
+        int tailleArmee;
         String input = scanner.nextLine();
         tailleArmee = Integer.parseInt(input);
         testArmees = new Armee(nomArmee,nomFaction,tailleArmee);
@@ -63,7 +62,6 @@ public class Main {
         String nomGroupe = scanner.nextLine();
         Groupe groupe = new Groupe(nomGroupe);
         gererGroupe(groupe);
-        return;
     }
 
 
@@ -128,7 +126,7 @@ public class Main {
                 int pointsInfanterie = lireEntier("Points de l'infanterie : ");
                 System.out.print("Type de l'infanterie (Soldat, Lourd, Spécial, Chef): ");
                 String typeInfanterie = scanner.nextLine();
-                groupe.ajouterUnite(new Infanterie(nomInfanterie, pointsInfanterie, "soldat"));
+                groupe.ajouterUnite(new Infanterie(nomInfanterie, pointsInfanterie, typeInfanterie));
             }
             case 2 -> {
                 int capaciteVehicule = 0;
@@ -143,10 +141,7 @@ public class Main {
                 }
                 groupe.ajouterUnite(new Vehicule(nomVehicule, pointsVehicule, typeVehicule, capaciteVehicule));
             }
-            case 3 -> {
-                System.out.println("Retour à la gestion du groupe...");
-                return;
-            }
+            case 3 -> System.out.println("Retour à la gestion du groupe...");
             default -> System.out.println("Choix invalide. Veuillez réessayer.");
         }
     }

@@ -6,7 +6,7 @@ public class Armee {
     private String faction;
     private int maxPoints;
     private int totalPoints; // Pour suivre les points des groupes
-    private List<Groupe> groupes;
+    private ArrayList<Groupe> groupes;
 
     // Constructeur avec les vérifications
 
@@ -61,6 +61,7 @@ public class Armee {
     @Override
     public String toString(){
         return String.format("Nom de l'armée : %s \nNom de la faction : %s \nPoints max : %d \nPoints utilisés : %d", this.nom, this.faction, this.maxPoints, this.totalPoints);
+
     }
 
 
@@ -78,6 +79,6 @@ public class Armee {
         return totalPoints;
     }
     public List<Groupe> getGroupes() {
-        return new ArrayList<>(groupes); // Retourne une copie pour éviter les modifications externes
+        return this.groupes; // Retourne une copie pour éviter les modifications externes
     }
 }

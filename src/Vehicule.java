@@ -29,6 +29,32 @@ class Vehicule implements Unite {
         return String.format("- %s - %s : (%d pts, capacité : %d)", this.typeVehicule, this.nom, this.coutPoints, this.capaciteTransport);
     }
 
+    @Override
+    public int getCoutPoints() {
+        return coutPoints;
+    }
+
+    public void setCoutPoints(int coutPoints) {
+        this.coutPoints = coutPoints;
+    }
+
+    public int getCapaciteTransport() {
+        return capaciteTransport;
+    }
+
+    public void setCapaciteTransport(int capaciteTransport) {
+        this.capaciteTransport = capaciteTransport;
+    }
+
+    @Override
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public String getTypeVehicule() {
         return typeVehicule;
     }

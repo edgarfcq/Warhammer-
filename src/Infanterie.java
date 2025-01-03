@@ -25,6 +25,24 @@ class Infanterie implements Unite {
         return String.format("- %s - %s : (%d pts)", this.typeInfanterie, this.nom, this.coutPoints);
     }
 
+    @Override
+    public int getCoutPoints() {
+        return coutPoints;
+    }
+
+    public void setCoutPoints(int coutPoints) {
+        this.coutPoints = coutPoints;
+    }
+
+    @Override
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public String getTypeInfanterie() {
         return typeInfanterie;
     }

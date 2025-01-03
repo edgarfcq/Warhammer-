@@ -5,17 +5,12 @@ class Groupe {
     private int points;
     private ArrayList<Unite> listeUnites;
 
-    public Groupe(String nom, int points) {
+    public Groupe(String nom) {
         if (nom == null || nom.trim().isEmpty()) {
             throw new IllegalArgumentException("Le groupe doit obligatoirement avoir un nom.");
         }
-        if (points <= 0) {
-            throw new IllegalArgumentException("Les points doivent être un entier positif.");
-        }
-
-
         this.nom = nom;
-        this.points = points;
+        this.points = 0;
         this.listeUnites = new ArrayList<>();
     }
 
@@ -24,13 +19,15 @@ class Groupe {
         String formattedString = "";
         formattedString += String.format("Groupes :\n- %s\n   ", this.nom);
         for(Unite unitePtr : listeUnites){
-            formattedString += String.format("%s\n", unitePtr.toString());
+            formattedString += String.format("%s\n   ", unitePtr.toString());
         }
         return formattedString;
     }
 
+
     public void ajouterUnite(Unite unite) {
         listeUnites.add(unite);
+        this.points += unite.getCoutPoints();
     }
 
     public String getNom() {

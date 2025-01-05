@@ -33,6 +33,12 @@ public class Main {
 
     private static void initialisationArmee(){
         Scanner scanner = new Scanner(System.in);
+        System.out.print("__        ___    ____  _   _    _    __  __ __  __ _____ ____  \r\n" + //
+                        "\\ \\      / / \\  |  _ \\| | | |  / \\  |  \\/  |  \\/  | ____|  _ \\ \r\n" + //
+                        " \\ \\ /\\ / / _ \\ | |_) | |_| | / _ \\ | |\\/| | |\\/| |  _| | |_) |\r\n" + //
+                        "  \\ V  V / ___ \\|  _ <|  _  |/ ___ \\| |  | | |  | | |___|  _ < \r\n" + //
+                        "   \\_/\\_/_/   \\_\\_| \\_\\_| |_/_/   \\_\\_|  |_|_|  |_|_____|_| \\_\\");
+        System.out.print("\r\n");
         System.out.print("Ecrire le nom de l'armée : ");
         String nomArmee = scanner.nextLine();
 
@@ -48,12 +54,16 @@ public class Main {
     }
 
     private static void afficherMenuPrincipal() {
-        System.out.println("\n--- Menu Principal ---");
-        System.out.println("1. Créer une nouvelle armée");
-        System.out.println("2. Créer un nouveau Groupe");
-        System.out.println("3. Modifier Groupe");
-        System.out.println("4. Afficher Armee");
-        System.out.println("5. Quitter");
+        System.out.println("+---------------------------+");
+        System.out.println("|        Menu Principal     |");
+        System.out.println("+---------------------------+");
+        System.out.println("+----------------------------------------+");
+        System.out.println("| 1. Créer une nouvelle armée           |");
+        System.out.println("| 2. Créer un nouveau Groupe            |");
+        System.out.println("| 3. Modifier Groupe                    |");
+        System.out.println("| 4. Afficher Armee                     |");
+        System.out.println("| 5. Quitter                            |");
+        System.out.println("+----------------------------------------+");
     }
 
     private static void creerGroupe() {
@@ -90,12 +100,14 @@ public class Main {
         while (true) {
             System.out.printf("\n--- Gestion du Groupe : %s ---\n", groupe.getNom());
             System.out.println("1. Ajouter une unité");
-            System.out.println("2. Retour au menu principal");
-
+            System.out.println("2. Supprimer une unité"); // Nouvelle option
+            System.out.println("3. Retour au menu principal");
+    
             int choix = lireEntier("Votre choix : ");
             switch (choix) {
                 case 1 -> ajouterUnite(groupe);
-                case 2 -> {
+                case 2 -> supprimerUnite(groupe); // Appelle la méthode ajoutée
+                case 3 -> {
                     try {
                         if (!testArmees.getGroupes().contains(groupe)) { // Évite les doublons
                             testArmees.ajouterGroupe(groupe);
@@ -110,6 +122,22 @@ public class Main {
             }
         }
     }
+    
+
+        // Ajoutez cette méthode dans la classe Main, au même niveau que les autres méthodes
+    private static void supprimerUnite(Groupe groupe) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nom de l'unité à supprimer : ");
+        String nomUnite = scanner.nextLine();
+
+        try {
+            groupe.supprimerUnite(nomUnite); // Appelle la méthode de suppression dans la classe Groupe
+            System.out.println("Unité supprimée avec succès !");
+        } catch (IllegalArgumentException e) {
+            System.err.println("Erreur : " + e.getMessage());
+        }
+    }
+
 
     private static void ajouterUnite(Groupe groupe) {
         Scanner scanner = new Scanner(System.in);

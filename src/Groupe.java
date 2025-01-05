@@ -30,6 +30,26 @@ class Groupe {
         this.points += unite.getCoutPoints();
     }
 
+    public void supprimerUnite(String nomUnite) {
+        Unite uniteASupprimer = null;
+    
+        // Trouver l'unité correspondante
+        for (Unite unite : listeUnites) {
+            if (unite.getNom().equalsIgnoreCase(nomUnite)) {
+                uniteASupprimer = unite;
+                break;
+            }
+        }
+    
+        if (uniteASupprimer != null) {
+            listeUnites.remove(uniteASupprimer);
+            this.points -= uniteASupprimer.getCoutPoints();
+        } else {
+            throw new IllegalArgumentException("Unité introuvable dans le groupe.");
+        }
+    }
+    
+
     public String getNom() {
         return nom;
     }

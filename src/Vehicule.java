@@ -1,8 +1,8 @@
 class Vehicule implements Unite {
-    private String nom;
-    private int coutPoints;
-    private String typeVehicule; // Transport, Attaque
-    private int capaciteTransport; // Seulement pour Transport
+    private final String nom;
+    private final int coutPoints;
+    private final String typeVehicule; // Transport, Attaque
+    private final int capaciteTransport; // Seulement pour Transport
 
     public Vehicule(String nom, int coutPoints, String typeVehicule, int capaciteTransport) {
         if (nom == null || nom.trim().isEmpty()) {
@@ -34,32 +34,9 @@ class Vehicule implements Unite {
         return coutPoints;
     }
 
-    public void setCoutPoints(int coutPoints) {
-        this.coutPoints = coutPoints;
-    }
-
-    public int getCapaciteTransport() {
-        return capaciteTransport;
-    }
-
-    public void setCapaciteTransport(int capaciteTransport) {
-        this.capaciteTransport = capaciteTransport;
-    }
-
     @Override
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getTypeVehicule() {
-        return typeVehicule;
-    }
-
-    public void setTypeVehicule(String typeVehicule) {
-        this.typeVehicule = typeVehicule;
-    }
 }

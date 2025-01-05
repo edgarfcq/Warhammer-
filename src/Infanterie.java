@@ -1,7 +1,7 @@
 class Infanterie implements Unite {
-    private String nom;
-    private int coutPoints;
-    private String typeInfanterie; // Soldat, Lourd, Spécial, Chef
+    private final String nom;
+    private final int coutPoints;
+    private final String typeInfanterie; // Soldat, Lourd, Spécial, Chef
 
     public Infanterie(String nom, int coutPoints, String typeInfanterie) {
         if (nom == null || nom.trim().isEmpty()) {
@@ -30,24 +30,9 @@ class Infanterie implements Unite {
         return coutPoints;
     }
 
-    public void setCoutPoints(int coutPoints) {
-        this.coutPoints = coutPoints;
-    }
-
     @Override
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getTypeInfanterie() {
-        return typeInfanterie;
-    }
-
-    public void setTypeInfanterie(String typeInfanterie) {
-        this.typeInfanterie = typeInfanterie;
-    }
 }

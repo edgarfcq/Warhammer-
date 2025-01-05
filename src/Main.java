@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Main {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private static Armee testArmees;
 
     public static void main(String[] args) {
@@ -38,25 +38,32 @@ public class Main {
                         " \\ \\ /\\ / / _ \\ | |_) | |_| | / _ \\ | |\\/| | |\\/| |  _| | |_) |\r\n" + //
                         "  \\ V  V / ___ \\|  _ <|  _  |/ ___ \\| |  | | |  | | |___|  _ < \r\n" + //
                         "   \\_/\\_/_/   \\_\\_| \\_\\_| |_/_/   \\_\\_|  |_|_|  |_|_____|_| \\_\\");
-        System.out.print("\r\n");
-        System.out.print("Ecrire le nom de l'armée : ");
+        System.out.print("\r\n\n");
+        System.out.println("+----------------------------------------+");
+
+        System.out.print("| Écrire le nom de l'armée : ");
         String nomArmee = scanner.nextLine();
+        System.out.println("+----------------------------------------+");
 
 
-        System.out.print("Ecrire le nom de la faction : ");
+
+        System.out.print("| Écrire le nom de la faction : ");
         String nomFaction = scanner.nextLine();
+        System.out.println("+----------------------------------------+");
 
-        System.out.print("Ecrire la taille de l'armée :");
+        System.out.print("| Écrire la taille de l'armée :");
+
         int tailleArmee;
         String input = scanner.nextLine();
+        System.out.println("+----------------------------------------+");
         tailleArmee = Integer.parseInt(input);
         testArmees = new Armee(nomArmee,nomFaction,tailleArmee);
     }
 
     private static void afficherMenuPrincipal() {
-        System.out.println("+---------------------------+");
-        System.out.println("|        Menu Principal     |");
-        System.out.println("+---------------------------+");
+        System.out.println("      +---------------------------+");
+        System.out.println("      |       Menu Principal      |");
+        System.out.println("      +---------------------------+");
         System.out.println("+----------------------------------------+");
         System.out.println("| 1. Créer une nouvelle armée           |");
         System.out.println("| 2. Créer un nouveau Groupe            |");
@@ -68,8 +75,12 @@ public class Main {
 
     private static void creerGroupe() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Ecrire le nom du groupe: ");
+        System.out.println("+----------------------------------------+");
+        System.out.print("|  Écrire le nom du groupe: ");
+
         String nomGroupe = scanner.nextLine();
+        System.out.println("+----------------------------------------+");
+
         Groupe groupe = new Groupe(nomGroupe);
         gererGroupe(groupe);
     }
@@ -98,12 +109,18 @@ public class Main {
 
     private static void gererGroupe(Groupe groupe) {
         while (true) {
-            System.out.printf("\n--- Gestion du Groupe : %s ---\n", groupe.getNom());
-            System.out.println("1. Ajouter une unité");
-            System.out.println("2. Supprimer une unité"); // Nouvelle option
-            System.out.println("3. Retour au menu principal");
-    
-            int choix = lireEntier("Votre choix : ");
+            System.out.println("+----------------------------------------+");
+            System.out.printf("|    Gestion du Groupe : %-15s |\n", groupe.getNom());
+            System.out.println("+----------------------------------------+");
+            System.out.println("|  1. Ajouter une unité                  |");
+            System.out.println("|  2. Supprimer une unité                |"); // Nouvelle option
+            System.out.println("|  3. Retour au menu principal           |");
+            System.out.println("+----------------------------------------+");
+
+
+            int choix = lireEntier("| Votre choix : ");
+            System.out.println("+----------------------------------------+");
+
             switch (choix) {
                 case 1 -> ajouterUnite(groupe);
                 case 2 -> supprimerUnite(groupe); // Appelle la méthode ajoutée
@@ -127,12 +144,12 @@ public class Main {
         // Ajoutez cette méthode dans la classe Main, au même niveau que les autres méthodes
     private static void supprimerUnite(Groupe groupe) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nom de l'unité à supprimer : ");
+        System.out.print("| Nom de l'unité à supprimer : ");
         String nomUnite = scanner.nextLine();
 
         try {
             groupe.supprimerUnite(nomUnite); // Appelle la méthode de suppression dans la classe Groupe
-            System.out.println("Unité supprimée avec succès !");
+            System.out.println("| Unité supprimée avec succès !         |");
         } catch (IllegalArgumentException e) {
             System.err.println("Erreur : " + e.getMessage());
         }
@@ -141,12 +158,16 @@ public class Main {
 
     private static void ajouterUnite(Groupe groupe) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n--- Ajouter une unité ---");
-        System.out.println("1. Ajouter une infanterie");
-        System.out.println("2. Ajouter un véhicule");
-        System.out.println("3. Retour à la gestion du groupe");
+        System.out.println("+----------------------------------------+");
+        System.out.println("|           Ajouter une unité            |");
+        System.out.println("+----------------------------------------+");
+        System.out.println("| 1. Ajouter une infanterie              |");
+        System.out.println("| 2. Ajouter un véhicule                 |");
+        System.out.println("| 3. Retour à la gestion du groupe       |");
+        System.out.println("+----------------------------------------+");
+        int choix = lireEntier("| Votre choix : ");
+        System.out.println("+----------------------------------------+");
 
-        int choix = lireEntier("Votre choix : ");
         switch (choix) {
             case 1 -> {
                 System.out.print("Nom de l'infanterie : ");

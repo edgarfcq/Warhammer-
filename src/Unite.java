@@ -1,6 +1,6 @@
 public interface Unite {
 
-    public String toString();
-    public String getNom();
-    public int getCoutPoints();
+    String toString();
+    String getNom();
+    int getCoutPoints();
 }

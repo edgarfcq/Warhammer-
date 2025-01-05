@@ -1,9 +1,9 @@
 import java.util.*;
 
 class Groupe {
-    private String nom;
+    private final String nom;
     private int points;
-    private ArrayList<Unite> listeUnites;
+    private final ArrayList<Unite> listeUnites;
 
     public Groupe(String nom) {
         if (nom == null || nom.trim().isEmpty()) {

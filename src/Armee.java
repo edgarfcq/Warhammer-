@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Armee {
-    private String nom;
-    private String faction;
-    private int maxPoints;
+    private final String nom;
+    private final String faction;
+    private final int maxPoints;
     private int totalPoints; // Pour suivre les points des groupes
-    private ArrayList<Groupe> groupes;
+    private final ArrayList<Groupe> groupes;
 
     // Constructeur avec les vérifications
 
@@ -37,7 +37,7 @@ public class Armee {
         if (groupe == null) {
             throw new IllegalArgumentException("Vous devez fournir un objet de type Groupe.");
         }
-        if (groupe.getPoints() <= 0) {
+        if (groupe.getPoints() < 0) {
             throw new IllegalArgumentException("Les points du groupe doivent être positifs.");
         }
         if (totalPoints + groupe.getPoints() > maxPoints) {
@@ -59,19 +59,6 @@ public class Armee {
     }
 
 
-    // Getters et Setters
-    public String getNom() {
-        return nom;
-    }
-    public String getFaction() {
-        return faction;
-    }
-    public int getMaxPoints() {
-        return maxPoints;
-    }
-    public int getTotalPoints() {
-        return totalPoints;
-    }
     public List<Groupe> getGroupes() {
         return this.groupes;
     }

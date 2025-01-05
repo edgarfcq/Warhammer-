@@ -6,7 +6,7 @@ class Groupe {
     private final ArrayList<Unite> listeUnites;
 
     public Groupe(String nom) {
-        if (nom == null || nom.trim().isEmpty()) {
+        if (nom == null || nom.trim().isEmpty()) { // on regarde que le nom est correct
             throw new IllegalArgumentException("Le groupe doit obligatoirement avoir un nom.");
         }
         this.nom = nom;
@@ -27,7 +27,7 @@ class Groupe {
 
     public void ajouterUnite(Unite unite) {
         listeUnites.add(unite);
-        this.points += unite.getCoutPoints();
+        this.points += unite.getCoutPoints(); // on ajoute les points de l'unité a la somme totale
     }
 
     public void supprimerUnite(String nomUnite) {
@@ -43,7 +43,7 @@ class Groupe {
     
         if (uniteASupprimer != null) {
             listeUnites.remove(uniteASupprimer);
-            this.points -= uniteASupprimer.getCoutPoints();
+            this.points -= uniteASupprimer.getCoutPoints(); // on enlève les points de l'unité
         } else {
             throw new IllegalArgumentException("Unité introuvable dans le groupe.");
         }

@@ -33,12 +33,14 @@ public class Main {
 
     private static void initialisationArmee(){
         Scanner scanner = new Scanner(System.in);
+        // joli dessin en ascii car pourquoi pas  :)
         System.out.print("__        ___    ____  _   _    _    __  __ __  __ _____ ____  \r\n" + //
                         "\\ \\      / / \\  |  _ \\| | | |  / \\  |  \\/  |  \\/  | ____|  _ \\ \r\n" + //
                         " \\ \\ /\\ / / _ \\ | |_) | |_| | / _ \\ | |\\/| | |\\/| |  _| | |_) |\r\n" + //
                         "  \\ V  V / ___ \\|  _ <|  _  |/ ___ \\| |  | | |  | | |___|  _ < \r\n" + //
                         "   \\_/\\_/_/   \\_\\_| \\_\\_| |_/_/   \\_\\_|  |_|_|  |_|_____|_| \\_\\");
         System.out.print("\r\n\n");
+        // on récupère le nom donné par l'utilisateur pour l'arùée la faction et la taille max de l'armée
         System.out.println("+----------------------------------------+");
 
         System.out.print("| Écrire le nom de l'armée : ");
@@ -88,7 +90,7 @@ public class Main {
 
     private static void modifierGroupe() {
         int nombreGroupe = testArmees.getGroupes().size();
-        if (nombreGroupe == 0) {
+        if (nombreGroupe == 0) { // on vérifie s'il existe au moins 1 groupe
             System.out.println("Il n'y a actuellement aucun groupe.\nRetour au menu principal...");
             return;
         }
@@ -100,7 +102,7 @@ public class Main {
             if (indice < 0 || indice >= nombreGroupe) {
                 System.out.println("Indice invalide. Veuillez entrer un indice valide.");
             }
-        } while (indice < 0 || indice >= nombreGroupe);
+        } while (indice < 0 || indice >= nombreGroupe); // on vérifie qu'on l'nidice donné est correcth
 
         gererGroupe(testArmees.getGroupes().get(indice));
     }
@@ -141,14 +143,13 @@ public class Main {
     }
     
 
-        // Ajoutez cette méthode dans la classe Main, au même niveau que les autres méthodes
     private static void supprimerUnite(Groupe groupe) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("| Nom de l'unité à supprimer : ");
         String nomUnite = scanner.nextLine();
 
         try {
-            groupe.supprimerUnite(nomUnite); // Appelle la méthode de suppression dans la classe Groupe
+            groupe.supprimerUnite(nomUnite); // on appelle la méthode de suppression dans la classe Groupe
             System.out.println("| Unité supprimée avec succès !         |");
         } catch (IllegalArgumentException e) {
             System.err.println("Erreur : " + e.getMessage());
@@ -188,7 +189,7 @@ public class Main {
                 if(typeVehicule.equals("TRANSPORT")) {
                     capaciteVehicule = lireEntier("Capacité du véhicule : ");
                 }
-                groupe.ajouterUnite(new Vehicule(nomVehicule, pointsVehicule, typeVehicule, capaciteVehicule));
+                groupe.ajouterUnite(new Vehicule(nomVehicule, pointsVehicule, typeVehicule, capaciteVehicule)); // on créé une unité avec les caractéristique donnée
             }
             case 3 -> System.out.println("Retour à la gestion du groupe...");
             default -> System.out.println("Choix invalide. Veuillez réessayer.");
@@ -197,7 +198,7 @@ public class Main {
 
     private static void afficherArmee(){
         System.out.println(testArmees);
-        for(Groupe groupePtr : testArmees.getGroupes()) {
+        for(Groupe groupePtr : testArmees.getGroupes()) { // on parcourt tout les groupes et on affiche leurs contenue (rendu possible avec la surchage de la fonction tostring)
             System.out.println(groupePtr);
         }
     }
